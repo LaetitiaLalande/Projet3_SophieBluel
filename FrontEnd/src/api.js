@@ -23,7 +23,7 @@ fetch("http://localhost:5678/api/works")
             gallery.appendChild(projectElement);
             projectElement.appendChild(imageElement);
             projectElement.appendChild(titreElement);
+
         }
     })
-
 
