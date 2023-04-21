@@ -1,11 +1,11 @@
 fetch("http://localhost:5678/api/works")
     .then(response => response.json())
-    .then((projects) => {
+    .then((listProjects) => {
 
-        for (let i = 0; i < projects.length; i++) {
+        for (let i = 0; i < listProjects.length; i++) {
+            const project = listProjects[i];
 
             // creation de la const pour 1 projet
-            const project = projects[i];
 
             // recupération de la class qui accueillera les projets
             const gallery = document.querySelector(".gallery");
