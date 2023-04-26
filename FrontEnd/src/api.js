@@ -1,29 +1,30 @@
-fetch("http://localhost:5678/api/works")
-    .then(response => response.json())
-    .then((listProjects) => {
+const response = await fetch("http://localhost:5678/api/works");
+const listProjects = await response.json();
 
-        for (let i = 0; i < listProjects.length; i++) {
-            const project = listProjects[i];
+export async function genererProjects(listProjects) {
 
-            // creation de la const pour 1 projet
+    for (let i = 0; i < listProjects.length; i++) {
 
-            // recupération de la class qui accueillera les projets
-            const gallery = document.querySelector(".gallery");
+        // creation de la const pour 1 projet
+        const category = listProjects[i];
 
-            // creation de la fiche dédiée à un projet
-            const projectElement = document.createElement("figure");
+        // recupération de la class qui accueillera les projets
+        const gallery = document.querySelector(".gallery");
 
-            // creation des éléments qui integrera la fiche
-            const imageElement = document.createElement("img");
-            imageElement.src = project.imageUrl;
-            const titreElement = document.createElement("figcaption");
-            titreElement.innerText = project.title;
+        // creation de la fiche dédiée à un projet
+        const categoryElement = document.createElement("figure");
 
-            // rattachement des balises a la class .gallery
-            gallery.appendChild(projectElement);
-            projectElement.appendChild(imageElement);
-            projectElement.appendChild(titreElement);
+        // creation des éléments qui integrera la fiche
+        const imageElement = document.createElement("img");
+        imageElement.src = category.imageUrl;
+        const titreElement = document.createElement("figcaption");
+        titreElement.innerText = category.title;
 
-        }
-    })
+        // rattachement des balises a la class .gallery
+        gallery.appendChild(categoryElement);
+        categoryElement.appendChild(imageElement);
+        categoryElement.appendChild(titreElement);
 
+    }
+}
+genererProjects(listProjects);
