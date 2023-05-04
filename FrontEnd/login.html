@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="./assets/css/login.css">
 </head>
 
-
 <body>
     <header>
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -30,21 +29,17 @@
     <main>
 
         <section class="login-container">
-            <h2>Log In</h1>
-                <form action="#" method="post">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" name="password" id="password">
-                    <input type="submit" value="Se connecter" disabled>
-                    <a href="#" id="passwordForgot">Mot de passe oublié</a>
-                </form>
+            <h2>Log In</h2>
+            <form action="#" method="post" id="form">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required minlength="8">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password" required minlength="6">
+                <input type="submit" value="Se connecter" id="submit">
+                <a href="#" id="passwordForgot">Mot de passe oublié</a>
+            </form>
         </section>
-
-
     </main>
-
-
 
     <footer>
         <nav>
@@ -54,6 +49,7 @@
         </nav>
     </footer>
 
+    <script src="./src/login.js"></script>
 </body>
 
 

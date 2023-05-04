@@ -4,6 +4,13 @@ import { genererProjects } from "./api.js";
 const response = await fetch("http://localhost:5678/api/works");
 const listCategorys = await response.json();
 
+// creation du bouton tous
+const btnAll = document.getElementById("btn-all");
+btnAll.addEventListener("click", () => {
+    document.querySelector(".gallery").innerHTML = "";
+    genererProjects(listCategorys);
+});
+
 // creation du bouton Objects
 const btnOject = document.getElementById("btn-object");
 btnOject.addEventListener("click", () => {
@@ -26,11 +33,5 @@ btnHotel.addEventListener("click", () => {
     const categoryHotel = listCategorys.filter(hotel => hotel.categoryId == '3');
     document.querySelector(".gallery").innerHTML = "";
     genererProjects(categoryHotel);
-})
+});
 
-// creation du bouton tous
-const btnAll = document.getElementById("btn-all");
-btnAll.addEventListener("click", () => {
-    document.querySelector(".gallery").innerHTML = "";
-    genererProjects(listCategorys);
-})
