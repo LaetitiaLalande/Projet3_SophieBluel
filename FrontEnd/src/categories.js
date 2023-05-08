@@ -7,11 +7,13 @@ const listCategorys = await response.json();
 // creation du bouton tous
 const btnAll = document.getElementById("btn-all");
 btnAll.addEventListener("click", () => {
+    // efface la gallery
     document.querySelector(".gallery").innerHTML = "";
+    // genere la listCategorys
     genererProjects(listCategorys);
 });
 
-// creation du bouton Objects
+// creation du bouton Objets
 const btnOject = document.getElementById("btn-object");
 btnOject.addEventListener("click", () => {
     const categoryObject = listCategorys.filter(object => object.categoryId == '1');

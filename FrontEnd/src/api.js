@@ -29,4 +29,24 @@ export async function genererProjects(listProjects) {
 }
 genererProjects(listProjects);
 
+// recuperation du token
+const token = window.localStorage.getItem("token");
+
+// creation du mode Edition en cas d'authentification réussi 
+function modeEdition() {
+    if (token) {
+        document.getElementById("loginBtn").innerText = "logout";
+        document.querySelector(".filters").style.display = "none";
+        document.querySelector(".modeEditHeader").style.display = "flex";
+        document.querySelector(".editProjects").style.display = "block";
+    }
+}
+modeEdition();
+
+// deconnexion de la session lors du clique sur logout
+loginBtn.addEventListener("click", () => {
+    window.localStorage.removeItem("token");
+});
+
+
 
