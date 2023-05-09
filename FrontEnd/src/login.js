@@ -8,6 +8,7 @@ form.addEventListener("submit", (e) => {
     // empeche la soumission du formulaire en cas d'erreur
     e.preventDefault();
 
+    // requete POST qui permet d'envoyer les données du formulaire
     fetch('http://localhost:5678/api/users/login', {
         method: "POST",
         headers: {
@@ -27,7 +28,7 @@ form.addEventListener("submit", (e) => {
                 // stockage dans le localstorage du token d'authentification
                 window.localStorage.setItem("token", data.token);
             } else {
-                alert("Email et/ou mot de passe incorrect(s)");
+                alert("Erreur dans l’identifiant ou le mot de passe");
             }
         })
         // erreur en cas de promesse rejetée

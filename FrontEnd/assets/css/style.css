@@ -3,88 +3,6 @@
    License: none (public domain)
 */
 
-/* html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video */
-
 * {
 	margin: 0;
 	padding: 0;
@@ -140,10 +58,12 @@ table {
 
 
 body {
-	max-width: 1140px;
-	margin: auto;
 	font-family: 'Work Sans';
 	font-size: 14px;
+}
+
+main {
+	margin: auto 200px;
 }
 
 
@@ -178,57 +98,18 @@ a {
 	color: black;
 }
 
-/* mode Edition  */
-
-.modeEditHeader {
-	display: none;
-	align-items: center;
-	gap: 21px;
-	justify-content: center;
-	height: 59px;
-	background-color: black;
-	color: white;
-	width: 100vw;
-	margin-left: calc(-1 * ((100vw - 100%) / 2));
-}
-
-.modeEditHeader a {
-	color: white;
-}
-
-.modeEditHeader button {
-	border-radius: 60px;
-	height: 38px;
+button,
+li {
 	cursor: pointer;
-	background-color: white;
-	padding: 11px 23px 11px 23px;
 }
 
-.container-title-project {
-	display: flex;
-	align-items: baseline;
-	justify-content: center;
-	gap: 31px;
-}
-
-.editProjects {
-	display: none;
-	font-size: 14px;
-	font-weight: 400;
-}
-
-.editPhoto {
-	display: none;
-	margin: auto;
-	width: 80%;
-	padding-top: 15px;
-}
 
 /* Menu de navigation */
+
 .menu-container {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0;
+	margin: 50px 100px;
 }
 
 nav ul {
@@ -240,18 +121,19 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
-	cursor: pointer;
 }
 
 li:hover {
 	color: #B1663C;
 }
 
+
 /* section introduction */
 
 #introduction {
 	display: flex;
 	align-items: center;
+	gap: 70px;
 }
 
 #introduction figure {
@@ -260,8 +142,7 @@ li:hover {
 
 #introduction img {
 	display: block;
-	margin: auto;
-	width: 80%;
+	width: 100%;
 }
 
 #introduction article {
@@ -281,6 +162,7 @@ li:hover {
 	margin-bottom: 50px;
 }
 
+
 /* Boutons filtres catégories   */
 
 .filters {
@@ -297,7 +179,6 @@ li:hover {
 	width: auto;
 	padding-left: 15px;
 	padding-right: 15px;
-	cursor: pointer;
 	color: #1D6154;
 	font-family: 'Syne';
 	font-weight: 700;
@@ -309,6 +190,7 @@ li:hover {
 	background-color: #1D6154;
 	color: white;
 }
+
 
 /* Galerie mes projets */
 
@@ -323,6 +205,7 @@ li:hover {
 .gallery img {
 	width: 100%;
 }
+
 
 /* formulaire de contact */
 
@@ -379,5 +262,136 @@ input[type="submit"] {
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em;
+	margin: 2em 100px;
+}
+
+
+/* mode Edition si authentification réussie */
+
+.btnEdit {
+	background-color: white;
+	gap: 5px;
+}
+
+.modeEdit {
+	display: none;
+}
+
+.modeEdit.active {
+	display: flex;
+}
+
+/* section Edit navBar */
+
+.modeEditHeader {
+	align-items: center;
+	gap: 21px;
+	justify-content: center;
+	height: 59px;
+	background-color: black;
+	color: white;
+	width: 100%;
+
+}
+
+.btnModeEdition {
+	background-color: black;
+	color: white;
+}
+
+.btnPublish {
+	border-radius: 60px;
+	height: 38px;
+	background-color: white;
+	padding: 11px 23px 11px 23px;
+}
+
+
+/* section modifier Photo */
+
+#introduction figcaption {
+	margin: 15px auto;
+}
+
+/* section Edit Titre Projet */
+.container-title-project {
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+	gap: 31px;
+}
+
+
+/* la modale  */
+
+.modalContainer {
+	/* display: none; */
+	position: fixed;
+	top: 0;
+	width: 100%;
+	height: 100vw;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.modalContent {
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	border-radius: 10px;
+	padding: 30px;
+	background-color: white;
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.modalContent h3 {
+	margin-top: 30px;
+	text-align: center;
+	font-size: 26px;
+	font-weight: 400;
+}
+
+.galleryModal {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 7px;
+	margin: 46px 75px 38px 75px;
+	padding-bottom: 47px;
+	border-bottom: 1px solid #B3B3B3;
+}
+
+.galleryModal img {
+	height: 103px;
+	width: auto;
+}
+
+.btnPhotoAdd {
+	background-color: #1D6154;
+	border-radius: 60px;
+	color: white;
+	height: 36px;
+	font-family: "Syne";
+	font-size: 16px;
+	font-weight: 700;
+	width: 237px;
+	align-self: center;
+	margin-bottom: 23px;
+}
+
+#btnDelete {
+	color: #D65353;
+	text-align: center;
+}
+
+.closeModal {
+	border: none;
+	height: 24px;
+	width: 24px;
+	background-color: white;
+	position: absolute;
+	top: 15px;
+	right: 30px;
+	font-weight: bold;
 }

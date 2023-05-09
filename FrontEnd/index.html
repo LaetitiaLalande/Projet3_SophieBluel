@@ -17,9 +17,10 @@
 <body>
 	<header>
 
-		<div class="modeEditHeader">
-			<a href="#"><i class="fa-solid fa-pen-to-square"></i> Mode édition</a>
-			<button>publier les changements</button>
+		<!-- menu Edition qui apparait lors de l'authentification -->
+		<div class="modeEditHeader modeEdit">
+			<button class="btnModeEdition"><i class="fa-solid fa-pen-to-square"></i> Mode édition</a></button>
+			<button class="btnPublish">publier les changements</button>
 		</div>
 
 		<div class="menu-container">
@@ -34,13 +35,18 @@
 			</nav>
 		</div>
 	</header>
+
 	<main>
 		<section id="introduction">
+
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="photo de Sophie Bluel">
-				<figcaption class="editPhoto"><a href=""><i class="fa-solid fa-pen-to-square"></i> modifier</a>
+
+				<!-- bouton Modifier qui apparait lors de l'authentification -->
+				<figcaption><button class="btnEdit modeEdit"><i class="fa-solid fa-pen-to-square"></i>modifier</button>
 				</figcaption>
 			</figure>
+
 			<article>
 				<h2>Designer d'espace</h2>
 				<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison
@@ -51,17 +57,23 @@
 				<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG,
 					décorateur(trice)</p>
 			</article>
+
 		</section>
+
+
 		<section id="portfolio">
 
 			<div class="container-title-project">
 				<h2>Mes Projets</h2>
-				<div class="editProjects">
-					<a href=""><i class="fa-solid fa-pen-to-square"></i> modifier</a>
+
+				<!-- bouton Modifier qui apparait lors de l'authentification -->
+				<div class="editProjects modeEdit">
+					<button class="btnEdit openModal"><i class="fa-solid fa-pen-to-square"></i> modifier</button>
 				</div>
+
 			</div>
 
-
+			<!-- boutons filtre par catégories -->
 			<div class="filters">
 				<button class="btn-filter" id="btn-all">Tous</button>
 				<button class="btn-filter" id="btn-object">Objets</button>
@@ -69,6 +81,7 @@
 				<button class="btn-filter" id="btn-hotel">Hôtels & restaurants</button>
 			</div>
 
+			<!-- galerie récupérée avec Fetch -->
 			<div class="gallery">
 			</div>
 
@@ -77,6 +90,7 @@
 		<section id="contact">
 			<h2>Contact</h2>
 			<p>Vous avez un projet ? Discutons-en !</p>
+
 			<form action="#" method="post">
 				<label for="name">Nom</label>
 				<input type="text" name="name" id="name">
@@ -86,6 +100,7 @@
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
 				<input type="submit" value="Envoyer">
 			</form>
+
 		</section>
 	</main>
 
@@ -97,8 +112,24 @@
 		</nav>
 	</footer>
 
+	<!-- la modale -->
+	<div class="modalContainer">
+
+		<div class="modalContent">
+			<button class="closeModal">X</button>
+			<h3>Galerie photo</h3>
+
+			<div class="galleryModal"></div>
+
+			<button class="btnPhotoAdd">Ajouter une photo</button>
+			<a href="#" id="btnDelete">Supprimer la galerie</a>
+		</div>
+
+	</div>
+
 	<script type="module" src="./src/api.js"></script>
 	<script type="module" src="./src/categories.js"></script>
+	<script type="module" src="./src/modal.js"></script>
 </body>
 
 </html>
