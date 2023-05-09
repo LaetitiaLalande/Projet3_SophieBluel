@@ -39,6 +39,7 @@ function modeEdition() {
         document.querySelector(".filters").style.display = "none";
         document.querySelector(".modeEditHeader").style.display = "flex";
         document.querySelector(".editProjects").style.display = "block";
+        document.querySelector(".editPhoto").style.display = "block";
     }
 }
 modeEdition();

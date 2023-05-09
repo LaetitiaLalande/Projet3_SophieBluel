@@ -183,11 +183,16 @@ a {
 .modeEditHeader {
 	display: none;
 	align-items: center;
-	gap: 15px;
+	gap: 21px;
 	justify-content: center;
 	height: 59px;
-	width: 100%;
 	background-color: black;
+	color: white;
+	width: 100vw;
+	margin-left: calc(-1 * ((100vw - 100%) / 2));
+}
+
+.modeEditHeader a {
 	color: white;
 }
 
@@ -210,6 +215,13 @@ a {
 	display: none;
 	font-size: 14px;
 	font-weight: 400;
+}
+
+.editPhoto {
+	display: none;
+	margin: auto;
+	width: 80%;
+	padding-top: 15px;
 }
 
 /* Menu de navigation */
