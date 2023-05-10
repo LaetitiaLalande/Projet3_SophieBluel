@@ -28,7 +28,13 @@ form.addEventListener("submit", (e) => {
                 // stockage dans le localstorage du token d'authentification
                 window.localStorage.setItem("token", data.token);
             } else {
-                alert("Erreur dans l’identifiant ou le mot de passe");
+                // alert("Erreur dans l’identifiant ou le mot de passe");
+                // Créer un nouveau paragraphe
+                const alertError = document.createElement('p');
+                // Ajouter du texte au paragraphe
+                alertError.textContent = "Erreur dans l’identifiant ou le mot de passe";
+                // Ajouter le paragraphe en tant qu'enfant de la balise body
+                form.appendChild(alertError);
             }
         })
         // erreur en cas de promesse rejetée

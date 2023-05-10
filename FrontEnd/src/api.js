@@ -7,52 +7,26 @@ export async function genererProjects(listProjects) {
     for (let i = 0; i < listProjects.length; i++) {
 
         // creation de la const pour 1 projet
-        const category = listProjects[i];
+        const project = listProjects[i];
 
         // recupération de la class qui accueillera les projets
         const gallery = document.querySelector(".gallery");
 
         // creation de la fiche dédiée à un projet
-        const categoryElement = document.createElement("figure");
+        const projectElement = document.createElement("figure");
 
         // creation des éléments qui integrera la fiche
         const imageElement = document.createElement("img");
-        imageElement.src = category.imageUrl;
+        imageElement.src = project.imageUrl;
         const titreElement = document.createElement("figcaption");
-        titreElement.innerText = category.title;
+        titreElement.innerText = project.title;
 
         // rattachement des balises a la class .gallery
-        gallery.appendChild(categoryElement);
-        categoryElement.appendChild(imageElement);
-        categoryElement.appendChild(titreElement);
+        gallery.appendChild(projectElement);
+        projectElement.appendChild(imageElement);
+        projectElement.appendChild(titreElement);
     }
 }
 genererProjects(listProjects);
-
-// recuperation du token
-const token = window.localStorage.getItem("token");
-
-
-// creation du mode Edition en cas d'authentification réussi 
-const modeEdit = document.querySelectorAll('.modeEdit');
-
-function modeEdition() {
-    if (token) {
-        document.getElementById("loginBtn").innerText = "logout";
-        document.querySelector(".filters").style.display = "none";
-        // parcourt tous les éléments modeEdit et effectue le toggle
-        for (let i = 0; i < modeEdit.length; i++) {
-            modeEdit[i].classList.toggle('active');
-        }
-    }
-}
-modeEdition();
-
-
-// deconnexion de la session lors du clique sur logout
-loginBtn.addEventListener("click", () => {
-    window.localStorage.removeItem("token");
-});
-
 
 

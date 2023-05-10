@@ -68,7 +68,7 @@
 
 				<!-- bouton Modifier qui apparait lors de l'authentification -->
 				<div class="editProjects modeEdit">
-					<button class="btnEdit openModal"><i class="fa-solid fa-pen-to-square"></i> modifier</button>
+					<button class="btnEdit modalTrigger"><i class="fa-solid fa-pen-to-square"></i> modifier</button>
 				</div>
 
 			</div>
@@ -100,7 +100,6 @@
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
 				<input type="submit" value="Envoyer">
 			</form>
-
 		</section>
 	</main>
 
@@ -114,9 +113,11 @@
 
 	<!-- la modale -->
 	<div class="modalContainer">
+		<div class="backgroundModalContainer modalTrigger"></div>
 
 		<div class="modalContent">
-			<button class="closeModal">X</button>
+
+			<button class="closeModal modalTrigger"><i class="fa-solid fa-xmark"></i></button>
 			<h3>Galerie photo</h3>
 
 			<div class="galleryModal"></div>
@@ -129,7 +130,8 @@
 
 	<script type="module" src="./src/api.js"></script>
 	<script type="module" src="./src/categories.js"></script>
-	<script type="module" src="./src/modal.js"></script>
+	<script src="./src/modal.js"></script>
+	<script type="module" src="./src/modeAdmin.js"></script>
 </body>
 
 </html>
