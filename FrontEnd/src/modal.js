@@ -1,3 +1,4 @@
+// genere la galerie Modale
 fetch("http://localhost:5678/api/works")
     .then(response => response.json())
     .then(modalProjects => {
@@ -37,19 +38,81 @@ fetch("http://localhost:5678/api/works")
     })
 
 
-// Déclenchement de la modale
+// Déclenchement de la modale 1
 
 const modalContainer = document.querySelector(".modalContainer");
 const btnModalTrigger = document.querySelectorAll(".modalTrigger");
 
-// fonction qui fait apparaitre ou disparaitre la modale
+// fonction qui fait apparaitre/disparaitre la modale
 function toggleModal() {
     modalContainer.classList.toggle("active");
+    modalAddPhoto.style.display = "none";
+    modalGalleryContent.style.display = "flex";
 }
 
 // evenement au clique qui déclenche la modale
 btnModalTrigger.forEach(trigger => trigger.addEventListener("click", toggleModal))
 
+// Creation de la modale 2
+
+const modalGalleryContent = document.querySelector(".modalGalleryContent");
+const modalAddPhoto = document.querySelector(".modalAddPhoto");
+const btnPhotoAdd = document.querySelector(".btnPhotoAdd");
+
+btnPhotoAdd.addEventListener("click", () => {
+    modalAddPhoto.style.display="flex";
+    modalGalleryContent.style.display="none"
+})
 
 
-// Suppression de projet
+// const modalContent
+
+
+// suppression des travaux
+
+
+// creer un evenement au click qui supprime les travaux qd on clik en reprenant la ftcion deleteProject
+
+
+// const id = document.querySelector(".btnPhotoAdd");
+
+// // creer une constY avcec project a supprimer avce parseInt target
+
+// function deleteProject(e) {
+//     fetch(`http://localhost:5678/api/works/${y}`, {
+//         method: 'DELETE',
+//         headers: {
+//             Authorization: `Bearer ${token}`, // Ajoutez l'en-tête d'autorisation si nécessaire
+//             'Content-Type': 'application/json' // Ajoutez l'en-tête de type de contenu si nécessaire
+//         }
+//     })
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Erreur lors de la suppression de la ressource'); // Gère les erreurs de la réponse
+//             }
+//             console.log('Ressource supprimée avec succès');
+//         })
+//         .catch(error => console.log(error));
+// }
+
+
+// ajout de projet
+
+
+// fetch('http://localhost:5678/api/works', {
+//     // methode utilisée
+//     method: 'POST',
+//     headers: {
+//         Authorization: 'Bearer ${localStorage.getItem("token")}',
+//         Accept: 'application/json',
+//     },
+//     // ce qui va etre créer en json
+//     body: JSON.stringify({
+//         imageUrl: "strxbvg.png",
+//         title: "vcbng",
+//         categoryId: "ssving",
+//     }),
+// })
+//     // conversion au format json
+//     .then((response) => response.json())
+//     .then((data) => console.log(data))

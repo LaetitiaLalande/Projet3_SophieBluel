@@ -1,8 +1,5 @@
-const response = await fetch("http://localhost:5678/api/works");
-const listProjects = await response.json();
-
 // creation de la fonction generer les projets
-export async function genererProjects(listProjects) {
+export function genererProjects(listProjects) {
 
     for (let i = 0; i < listProjects.length; i++) {
 
@@ -27,6 +24,10 @@ export async function genererProjects(listProjects) {
         projectElement.appendChild(titreElement);
     }
 }
-genererProjects(listProjects);
 
+// appel à l'api avec la methode fetch
+
+fetch("http://localhost:5678/api/works")
+    .then((response) => response.json())
+    .then((data) => genererProjects(data))
 

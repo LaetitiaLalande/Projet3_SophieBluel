@@ -4,8 +4,6 @@ const form = document.getElementById("form");
 
 // evenement au click du bouton se connecter
 form.addEventListener("submit", (e) => {
-
-    // empeche la soumission du formulaire en cas d'erreur
     e.preventDefault();
 
     // requete POST qui permet d'envoyer les données du formulaire
@@ -28,13 +26,15 @@ form.addEventListener("submit", (e) => {
                 // stockage dans le localstorage du token d'authentification
                 window.localStorage.setItem("token", data.token);
             } else {
-                // alert("Erreur dans l’identifiant ou le mot de passe");
-                // Créer un nouveau paragraphe
-                const alertError = document.createElement('p');
-                // Ajouter du texte au paragraphe
-                alertError.textContent = "Erreur dans l’identifiant ou le mot de passe";
-                // Ajouter le paragraphe en tant qu'enfant de la balise body
-                form.appendChild(alertError);
+                // message d'Erreur dans l’identifiant ou le mot de passe
+                const alertError = document.createElement('div');
+                alertError.textContent = "Erreur dans l’identifiant et/ou le mot de passe";
+                alertError.style.color = 'red';
+                form.parentElement.insertBefore(alertError, form);
+                // disparition du message après 5sec
+                setTimeout(() => {
+                    alertError.remove();
+                }, 5000);
             }
         })
         // erreur en cas de promesse rejetée

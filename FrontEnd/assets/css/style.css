@@ -322,7 +322,7 @@ footer nav ul {
 }
 
 
-/* la modale  */
+/* modale Container */
 
 .modalContainer {
 	display: none;
@@ -343,8 +343,8 @@ footer nav ul {
 }
 
 .modalContent {
-	display: flex;
-	flex-direction: column;
+	height: 731px;
+	width: 630px;
 	box-sizing: border-box;
 	border-radius: 10px;
 	padding: 30px;
@@ -352,14 +352,30 @@ footer nav ul {
 	position: absolute;
 	top: 40%;
 	left: 50%;
-	transform: translate(-50%, -40%);
+	transform: translate(-50%, -35%);
 }
 
-.modalContent h3 {
+.modalContent h2 {
 	margin-top: 30px;
 	text-align: center;
 	font-size: 26px;
 	font-weight: 400;
+}
+
+#btnDelete {
+	color: #D65353;
+	text-align: center;
+}
+
+/* modale Gallery */
+
+.modalGalleryContent,
+.modalAddPhoto {
+	flex-direction: column;
+}
+
+.modalGalleryContent {
+	display: flex;
 }
 
 .galleryModal figure {
@@ -370,7 +386,7 @@ footer nav ul {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 7px;
-	margin: 46px 75px 38px 75px;
+	margin: 0 75px 38px 75px;
 	padding-bottom: 47px;
 	border-bottom: 1px solid #B3B3B3;
 	position: relative;
@@ -414,10 +430,6 @@ footer nav ul {
 	margin-bottom: 23px;
 }
 
-#btnDelete {
-	color: #D65353;
-	text-align: center;
-}
 
 .closeModal {
 	border: none;
@@ -428,4 +440,16 @@ footer nav ul {
 	top: 15px;
 	right: 30px;
 	font-size: 12px;
+}
+
+/* modale ajout de photo  */
+
+.modalAddPhoto {
+	display: none;
+}
+
+.addPhoto {
+	height: 169px;
+	background: #E8F1F6;
+	;
 }
