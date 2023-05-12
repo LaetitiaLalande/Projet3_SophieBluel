@@ -19,10 +19,10 @@ fetch("http://localhost:5678/api/works")
             imageElement.src = project.imageUrl;
 
             const iconTrash = document.createElement("icon");
-            iconTrash.className = "fa-regular fa-trash-can fa-sm";
-
+            iconTrash.classList.add("fa-regular", "fa-trash-can", "fa-sm");
+            
             const iconArrows = document.createElement("icon");
-            iconArrows.className = "fa-solid fa-arrows-up-down-left-right fa-sm";
+            iconArrows.classList.add("fa-solid", "fa-arrows-up-down-left-right", "fa-sm");
 
             const titreElement = document.createElement("figcaption");
             titreElement.innerText = "éditer";
@@ -33,7 +33,34 @@ fetch("http://localhost:5678/api/works")
             projectElement.appendChild(iconTrash);
             galleryModal.appendChild(iconArrows);
             projectElement.appendChild(titreElement);
+
+
+            // suppression des travaux avec requete DELETE
+            iconTrash.addEventListener("click", deleteProject)
+            const token = window.sessionStorage.getItem("token");
+            const id=project.id;
+                        
+            function deleteProject() {
+    
+                fetch(`http://localhost:5678/api/works/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        accept: "*/*",
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                        console.log('Ressource supprimée avec succès');
+                    } else {
+                        console.log('Erreur lors de la suppression de la ressource');
+                    }
+                    })
+                    .catch(error => console.log(error));
+            }
+            
         }
+        
 
     })
 
@@ -44,75 +71,54 @@ const modalContainer = document.querySelector(".modalContainer");
 const btnModalTrigger = document.querySelectorAll(".modalTrigger");
 
 // fonction qui fait apparaitre/disparaitre la modale
-function toggleModal() {
+function toggleModalContainer() {
     modalContainer.classList.toggle("active");
     modalAddPhoto.style.display = "none";
-    modalGalleryContent.style.display = "flex";
+    modalGalleryContent.style.display = "flex"
 }
 
 // evenement au clique qui déclenche la modale
-btnModalTrigger.forEach(trigger => trigger.addEventListener("click", toggleModal))
+btnModalTrigger.forEach(trigger => trigger.addEventListener("click", toggleModalContainer))
 
-// Creation de la modale 2
+
+// Evenement au clique de la modale 2
 
 const modalGalleryContent = document.querySelector(".modalGalleryContent");
 const modalAddPhoto = document.querySelector(".modalAddPhoto");
 const btnPhotoAdd = document.querySelector(".btnPhotoAdd");
+const btnBackGallery = document.querySelector(".btnBackGallery");
 
 btnPhotoAdd.addEventListener("click", () => {
-    modalAddPhoto.style.display="flex";
-    modalGalleryContent.style.display="none"
+    modalAddPhoto.style.display = "flex";
+    modalGalleryContent.style.display = "none";
+})
+
+btnBackGallery.addEventListener("click", () => {
+    modalAddPhoto.style.display = "none";
+    modalGalleryContent.style.display = "flex";
 })
 
 
-// const modalContent
+
+// ajout de projet avec requete POST
 
 
-// suppression des travaux
-
-
-// creer un evenement au click qui supprime les travaux qd on clik en reprenant la ftcion deleteProject
-
-
-// const id = document.querySelector(".btnPhotoAdd");
-
-// // creer une constY avcec project a supprimer avce parseInt target
-
-// function deleteProject(e) {
-//     fetch(`http://localhost:5678/api/works/${y}`, {
-//         method: 'DELETE',
-//         headers: {
-//             Authorization: `Bearer ${token}`, // Ajoutez l'en-tête d'autorisation si nécessaire
-//             'Content-Type': 'application/json' // Ajoutez l'en-tête de type de contenu si nécessaire
-//         }
-//     })
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Erreur lors de la suppression de la ressource'); // Gère les erreurs de la réponse
-//             }
-//             console.log('Ressource supprimée avec succès');
-//         })
-//         .catch(error => console.log(error));
-// }
-
-
-// ajout de projet
+// Créer un nouvel objet FormData
+// const formData = new FormData();
 
 
 // fetch('http://localhost:5678/api/works', {
 //     // methode utilisée
 //     method: 'POST',
 //     headers: {
-//         Authorization: 'Bearer ${localStorage.getItem("token")}',
-//         Accept: 'application/json',
+//         Authorization: `Bearer ${token}`,
+//         accept: 'application/json',
+        
 //     },
 //     // ce qui va etre créer en json
-//     body: JSON.stringify({
-//         imageUrl: "strxbvg.png",
-//         title: "vcbng",
-//         categoryId: "ssving",
-//     }),
+//     body: formData
 // })
 //     // conversion au format json
 //     .then((response) => response.json())
 //     .then((data) => console.log(data))
+//     .catch(error => console.log(error));

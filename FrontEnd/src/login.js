@@ -23,8 +23,8 @@ form.addEventListener("submit", (e) => {
             if (data.userId && data.token) {
                 // retour vers la page d'accueil si authentification reussie
                 window.location.href = 'index.html';
-                // stockage dans le localstorage du token d'authentification
-                window.localStorage.setItem("token", data.token);
+                // stockage dans la sessionStorage du token d'authentification
+                window.sessionStorage.setItem("token", data.token);
             } else {
                 // message d'Erreur dans l’identifiant ou le mot de passe
                 const alertError = document.createElement('div');
@@ -37,8 +37,8 @@ form.addEventListener("submit", (e) => {
                 }, 5000);
             }
         })
-        // erreur en cas de promesse rejetée
-        .catch(error => alert(error));
+        // gérer les erreurs de la promesse-affiche l'erreur dans la console du navigateur.
+        .catch(error => console.log(error));
 });
 
 

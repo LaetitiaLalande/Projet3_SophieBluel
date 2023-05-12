@@ -362,24 +362,30 @@ footer nav ul {
 	font-weight: 400;
 }
 
-#btnDelete {
-	color: #D65353;
-	text-align: center;
-}
-
-/* modale Gallery */
-
 .modalGalleryContent,
 .modalAddPhoto {
 	flex-direction: column;
 }
 
+.fa-xmark {
+	border: none;
+	height: 24px;
+	width: 24px;
+	background-color: white;
+	position: absolute;
+	top: 15px;
+	right: 30px;
+}
+
+/* modale Gallery */
+
 .modalGalleryContent {
 	display: flex;
 }
 
-.galleryModal figure {
-	position: relative;
+.modalAddPhoto {
+	display: none;
+	margin: 0 75px;
 }
 
 .galleryModal {
@@ -389,6 +395,11 @@ footer nav ul {
 	margin: 0 75px 38px 75px;
 	padding-bottom: 47px;
 	border-bottom: 1px solid #B3B3B3;
+	position: relative;
+}
+
+
+.galleryModal figure {
 	position: relative;
 }
 
@@ -417,7 +428,12 @@ footer nav ul {
 	left: 30px;
 }
 
-.btnPhotoAdd {
+#btnDelete {
+	color: #D65353;
+	text-align: center;
+}
+
+.btnModal {
 	background-color: #1D6154;
 	border-radius: 60px;
 	color: white;
@@ -428,28 +444,67 @@ footer nav ul {
 	width: 237px;
 	align-self: center;
 	margin-bottom: 23px;
+	cursor: pointer;
 }
 
 
-.closeModal {
+/* modale ajout de photo  */
+
+
+.fa-arrow-left {
 	border: none;
 	height: 24px;
 	width: 24px;
 	background-color: white;
 	position: absolute;
 	top: 15px;
-	right: 30px;
-	font-size: 12px;
+	left: 30px;
 }
 
-/* modale ajout de photo  */
-
-.modalAddPhoto {
-	display: none;
-}
-
-.addPhoto {
+.addPhotoContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	height: 169px;
 	background: #E8F1F6;
-	;
+}
+
+.fa-image {
+	font-size: 46px;
+	color: #B9C5CC;
+	margin-top: 28px;
+	cursor: pointer;
+}
+
+.submitPhoto {
+	height: 36px;
+	background-color: #CBD6DC;
+	border-radius: 50px;
+	color: #306685;
+	padding: 10px 33px;
+	margin-top: 21px;
+}
+
+.modalAddPhoto p {
+	font-size: 10px;
+	text-align: center;
+	margin-top: 7px;
+}
+
+.modalAddPhoto form {
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+
+.modalAddPhoto input,
+select {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modalAddPhoto label {
+	margin: 2em 0 1em 0;
 }

@@ -1,5 +1,5 @@
 // recuperation du token
-const token = window.localStorage.getItem("token");
+const token = window.sessionStorage.getItem("token");
 
 // creation du mode Edition en cas d'authentification réussi 
 const modeEdit = document.querySelectorAll('.modeEdit');
@@ -18,7 +18,7 @@ modeEdition();
 
 // deconnexion de la session lors du clique sur logout
 loginBtn.addEventListener("click", () => {
-    window.localStorage.removeItem("token");
+    window.sessionStorage.removeItem("token");
 });
 
 

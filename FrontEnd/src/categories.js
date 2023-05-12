@@ -1,5 +1,6 @@
 // Importation de la fonction genererProjects
-import { genererProjects } from "./api.js";
+import { genererProjects } from "./projets.js";
+
 
 const response = await fetch("http://localhost:5678/api/works");
 const listCategorys = await response.json();
