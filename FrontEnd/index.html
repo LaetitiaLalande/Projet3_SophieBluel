@@ -74,6 +74,7 @@
 					<div class="modalContent">
 
 						<div class="modalGalleryContent">
+							<!-- <div class="headerModalGallery"></div> -->
 							<button class="closeModal modalTrigger"><i class="fa-solid fa-xmark"></i></button>
 							<h2>Galerie photo</h2>
 							<div class="galleryModal"></div>
@@ -92,7 +93,7 @@
 									<p>jpg, png : 4mo max</p>
 								</div>
 							</div>
-							<form action="#" method="post">
+							<div class="formAdd">
 								<label for="title">Titre</label>
 								<input type="text" name="title" id="title">
 								<label for="categorys">Categories</label>
@@ -102,8 +103,10 @@
 									<option value="option2">Appartements</option>
 									<option value="option3">Hôtels et restaurant</option>
 								</select>
+							</div>
+							<div id="btnSubmitAddPhoto">
 								<input type="submit" value="Valider" class="btnSubmitAddPhoto" disabled>
-							</form>
+							</div>
 						</div>
 
 					</div>
@@ -158,8 +161,9 @@
 
 	<script type="module" src="./src/projets.js"></script>
 	<script type="module" src="./src/categories.js"></script>
-	<script src="./src/modal.js"></script>
+	<!-- <script type="module" src="./src/modal.js"></script> -->
 	<script type="module" src="./src/modeAdmin.js"></script>
+	<script src="./src/modales.js"></script>
 </body>
 
 </html>

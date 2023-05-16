@@ -37,7 +37,6 @@ fetch("http://localhost:5678/api/works")
 
             // suppression des travaux avec requete DELETE
             iconTrash.addEventListener("click", deleteProject)
-            const token = window.sessionStorage.getItem("token");
             const id=project.id;
                         
             function deleteProject() {
@@ -46,7 +45,7 @@ fetch("http://localhost:5678/api/works")
                     method: 'DELETE',
                     headers: {
                         accept: "*/*",
-                        Authorization: `Bearer ${token}`
+                        Authorization: `Bearer ${window.sessionStorage.getItem("token")}`
                     }
                 })
                     .then(response => {
@@ -58,10 +57,7 @@ fetch("http://localhost:5678/api/works")
                     })
                     .catch(error => console.log(error));
             }
-            
         }
-        
-
     })
 
 
