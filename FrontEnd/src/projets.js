@@ -1,3 +1,5 @@
+const urlApi = "http://localhost:5678/api/";
+
 // creation de la fonction generer les projets
 export function genererProjects(listProjects) {
 
@@ -25,9 +27,7 @@ export function genererProjects(listProjects) {
     }
 }
 
-// appel à l'api avec la methode fetch
-
-fetch("http://localhost:5678/api/works")
+// appel à l'api avec la methode fetch qui genère les projets grace à la fonction genererProjects
+fetch(`${urlApi}works`)
     .then((response) => response.json())
     .then((data) => genererProjects(data))
-

@@ -1,3 +1,4 @@
+const urlApi = "http://localhost:5678/api/";
 const loginEmail = document.getElementById("email");
 const loginPassword = document.getElementById("password");
 const form = document.getElementById("form");
@@ -7,10 +8,12 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     // requete POST qui permet d'envoyer les données du formulaire
-    fetch('http://localhost:5678/api/users/login', {
+    fetch(`${urlApi}users/login`, {
         method: "POST",
         headers: {
+            // format envoyé
             Accept: "application/json",
+            // format accepté
             "Content-Type": "application/json",
         },
         body: JSON.stringify({

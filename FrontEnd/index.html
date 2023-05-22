@@ -37,13 +37,15 @@
 	</header>
 
 	<main>
+
 		<section id="introduction">
 
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="photo de Sophie Bluel">
 
 				<!-- bouton Modifier qui apparait lors de l'authentification -->
-				<figcaption><button class="btnEdit modeEdit"><i class="fa-solid fa-pen-to-square"></i>modifier</button>
+				<figcaption>
+					<button class="btnEdit modeEdit"><i class="fa-solid fa-pen-to-square"></i>modifier</button>
 				</figcaption>
 			</figure>
 
@@ -73,26 +75,39 @@
 
 					<div class="modalContent">
 
+						<!-- modale Galerie -->
 						<div class="modalGalleryContent">
-							<!-- <div class="headerModalGallery"></div> -->
 							<button class="closeModal modalTrigger"><i class="fa-solid fa-xmark"></i></button>
 							<h2>Galerie photo</h2>
 							<div class="galleryModal"></div>
 							<button class="btnPhotoAdd btnModal">Ajouter une photo</button>
-							<a href="#" id="btnDelete">Supprimer la galerie</a>
+							<a href="#" class="btnDelete">Supprimer la galerie</a>
 						</div>
 
+						<!-- modale ajout de photo -->
 						<div class="modalAddPhoto">
+
 							<button class="modalTrigger"><i class="fa-solid fa-xmark"></i></button>
 							<button class="btnBackGallery"><i class="fa-solid fa-arrow-left"></i></button>
+
 							<h2 id="titleH2">Ajout photo</h2>
+
+							<!-- Bloc qui permet d'ajouter et prévisualiser la photo  -->
 							<div class="addPhotoContainer">
-								<i class="fa-sharp fa-regular fa-image"></i>
-								<div>
-									<button class="submitPhoto">+ Ajouter photo</button>
-									<p>jpg, png : 4mo max</p>
+								<img id="showImage">
+
+								<div class="preview">
+									<i class="fa-sharp fa-regular fa-image"></i>
+									<div>
+										<label for="uploadPhoto" class="uploadPhoto">+ Ajouter une photo</label>
+										<input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/*"
+											onchange="previewImage(event);">
+										<p id="textFile">jpg, png : 4mo max</p>
+									</div>
 								</div>
 							</div>
+
+							<!-- formulaire d'envoi de nouveaux projets -->
 							<div class="formAdd">
 								<label for="title">Titre</label>
 								<input type="text" name="title" id="title">
@@ -107,6 +122,7 @@
 							<div id="btnSubmitAddPhoto">
 								<input type="submit" value="Valider" class="btnSubmitAddPhoto" disabled>
 							</div>
+
 						</div>
 
 					</div>
@@ -129,8 +145,7 @@
 			</div>
 
 			<!-- galerie récupérée avec Fetch -->
-			<div class="gallery">
-			</div>
+			<div class="gallery"></div>
 
 		</section>
 
@@ -161,9 +176,8 @@
 
 	<script type="module" src="./src/projets.js"></script>
 	<script type="module" src="./src/categories.js"></script>
-	<!-- <script type="module" src="./src/modal.js"></script> -->
 	<script type="module" src="./src/modeAdmin.js"></script>
-	<script src="./src/modales.js"></script>
+	<script src="./src/modal.js"></script>
 </body>
 
 </html>

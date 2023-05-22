@@ -16,7 +16,7 @@ function modeEdition() {
 }
 modeEdition();
 
-// deconnexion de la session lors du clique sur logout
+// efface le token dans la sessionStorage lors du clique sur logout
 loginBtn.addEventListener("click", () => {
     window.sessionStorage.removeItem("token");
 });

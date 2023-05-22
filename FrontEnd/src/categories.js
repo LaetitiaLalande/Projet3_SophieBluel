@@ -1,8 +1,10 @@
 // Importation de la fonction genererProjects
 import { genererProjects } from "./projets.js";
+const urlApi = "http://localhost:5678/api/";
 
-
-const response = await fetch("http://localhost:5678/api/works");
+// recupère la reponse depuis l'api
+const response = await fetch(`${urlApi}works`);
+// reponse affectée à listCategorys et transformée en format json
 const listCategorys = await response.json();
 
 // creation du bouton tous
