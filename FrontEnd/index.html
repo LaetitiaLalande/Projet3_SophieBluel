@@ -94,35 +94,36 @@
 
 							<!-- Bloc qui permet d'ajouter et prévisualiser la photo  -->
 							<div class="addPhotoContainer">
-								<img id="showImage">
+								<img class="showImage" alt="previsualisation de l'image">
 
 								<div class="preview">
 									<i class="fa-sharp fa-regular fa-image"></i>
-									<div>
-										<label for="uploadPhoto" class="uploadPhoto">+ Ajouter une photo</label>
-										<input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/*"
-											onchange="previewImage(event);">
-										<p id="textFile">jpg, png : 4mo max</p>
-									</div>
+
+									<!-- formulaire d'envoi de nouveaux projets -->
+									<form action="" method="post" class="formAdd">
+										<div>
+											<label for="uploadPhoto" class="uploadPhoto">+ Ajouter une photo</label>
+											<input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/*"
+												onchange="previewImage(event);">
+											<p id="textFile">jpg, png : 4mo max</p>
+										</div>
 								</div>
+
 							</div>
 
-							<!-- formulaire d'envoi de nouveaux projets -->
-							<div class="formAdd">
-								<label for="title">Titre</label>
-								<input type="text" name="title" id="title">
-								<label for="categorys">Categories</label>
-								<select name="categorys" id="categorys">
-									<option value="option" selected></option>
-									<option value="option1">Objets</option>
-									<option value="option2">Appartements</option>
-									<option value="option3">Hôtels et restaurant</option>
-								</select>
-							</div>
+							<label for="title">Titre</label>
+							<input type="text" name="title" id="title">
+							<label for="category">Categories</label>
+							<select name="category" id="category">
+								<option value="option" selected></option>
+								<option value="1">Objets</option>
+								<option value="2">Appartements</option>
+								<option value="3">Hôtels et restaurants</option>
+							</select>
 							<div id="btnSubmitAddPhoto">
-								<input type="submit" value="Valider" class="btnSubmitAddPhoto" disabled>
+								<input type="submit" value="Valider" class="btnSubmitAddPhoto">
 							</div>
-
+							</form>
 						</div>
 
 					</div>

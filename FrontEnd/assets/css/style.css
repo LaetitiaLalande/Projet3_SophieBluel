@@ -501,17 +501,10 @@ footer nav ul {
 	margin-top: 20px;
 }
 
-.modalAddPhoto .formAdd {
-	text-align: left;
-	display: flex;
-	flex-direction: column;
-}
-
-.formAdd input,
-select {
+select,
+#title {
 	height: 50px;
 	font-size: 1.2em;
-	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
@@ -527,7 +520,7 @@ select {
 	width: 100%;
 }
 
-#showImage {
+.showImage {
 	height: 100%;
 	display: none;
 	margin: auto;

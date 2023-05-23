@@ -57,6 +57,7 @@ function deleteProject(e) {
     e.preventDefault();
     // // recherche l'id sur lequel le clic a été effectué
     const id = e.target.id;
+    // requete DELETE pour supprimer les travaux
     fetch(`${urlApi}works/${id}`, {
         method: 'DELETE',
         headers: {
@@ -66,10 +67,13 @@ function deleteProject(e) {
     })
         .then(response => {
             if (response.ok) {
+                // si reponse ok demande confirmation de suppression 
                 const question = confirm("Etes-vous sûr de vouloir supprimer le projet ?")
                 if (question === true) {
+                    // si client clique sur bouton valider 
                     console.log('Ressource supprimée avec succès');
                 } else {
+                    // sinon message si client clique sur bouton annuler
                     console.log("Confirmation annulée !");
                 }
             } else {
@@ -80,17 +84,14 @@ function deleteProject(e) {
 }
 
 
-
-// ajout de projet avec requete POST
-
 // fonction de Prévisualisation de l'image avant l'upload
-const showImage = document.getElementById("showImage");
 const preview = document.querySelector(".preview");
+const showImage = document.querySelector(".showImage")
 
-function previewImage(event) {
-    // si image selectionnée
-    if (event.target.files.length > 0) {
-        const src = URL.createObjectURL(event.target.files[0]);
+function previewImage(e) {
+    // condition si image selectionnée
+    if (e.target.files.length > 0) {
+        const src = URL.createObjectURL(e.target.files[0]);
         showImage.src = src;
         // affichage du bloc image 
         showImage.style.display = "block";
@@ -100,28 +101,39 @@ function previewImage(event) {
 }
 
 // Créer un nouvel objet FormData
-const formData = new FormData();
-const form = document.getElementById('formAjout');
 
-function addProject(e) {
+async function addProject(e) {
     e.preventDefault();
-    fetch(`${urlApi}works`, {
+
+    // recuperation de l'image , catégorie et titre  
+    const uploadPhoto = document.getElementById("uploadPhoto");
+    const image = uploadPhoto.files[0];
+    const title = document.getElementById("title").value;
+    const category = document.getElementById('category').value;
+
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('image', image);
+    formData.append('category', category);
+    console.log(formData);
+
+    const response = await fetch('http://localhost:5678/api/works', {
         method: 'POST',
         headers: {
-            accept: 'application/json',
             Authorization: `Bearer ${token}`,
-            'Content-Type': formData,
+            accept: 'application/json',
         },
-        body: JSON.stringify(
-            image = "string",
-            title = "string",
-            category = "string",
-        )
+        body: formData
     })
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch(error => console.log(error));
+    if (response.ok) {
+        console.log("projet ajouté avec succès");
+    } else {
+        alert("envoi echoué");
+    }
 }
+
+const formAdd = document.querySelector('.formAdd');
+formAdd.addEventListener("submit", addProject)
 
 
 // Déclenchement de la modale 1
