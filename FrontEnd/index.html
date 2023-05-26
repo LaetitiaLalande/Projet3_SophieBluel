@@ -43,7 +43,7 @@
 			<figure>
 				<img src="./assets/images/sophie-bluel.png" alt="photo de Sophie Bluel">
 
-				<!-- bouton Modifier qui apparait lors de l'authentification -->
+				<!-- bouton "Modifier" qui apparait lors de l'authentification -->
 				<figcaption>
 					<button class="btnEdit modeEdit"><i class="fa-solid fa-pen-to-square"></i>modifier</button>
 				</figcaption>
@@ -103,8 +103,7 @@
 									<form action="" method="post" class="formAdd">
 										<div>
 											<label for="uploadPhoto" class="uploadPhoto">+ Ajouter une photo</label>
-											<input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/*"
-												onchange="previewImage(event);">
+											<input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/*">
 											<p id="textFile">jpg, png : 4mo max</p>
 										</div>
 								</div>
@@ -130,7 +129,7 @@
 
 				</div>
 
-				<!-- bouton Modifier qui apparait lors de l'authentification -->
+				<!-- bouton "Modifier" qui apparait lors de l'authentification -->
 				<div class="editProjects modeEdit">
 					<button class="btnEdit modalTrigger"><i class="fa-solid fa-pen-to-square"></i> modifier</button>
 				</div>
@@ -175,10 +174,12 @@
 	</footer>
 
 
-	<script type="module" src="./src/projets.js"></script>
-	<script type="module" src="./src/categories.js"></script>
-	<script type="module" src="./src/modeAdmin.js"></script>
-	<script src="./src/modal.js"></script>
+	<script type="module" src="./src/API/projetsAPI.js"></script>
+	<script type="module" src="./src/API/modalAPI.js"></script>
+	<script src="./src/Pages/Ajout_Travaux.js"></script>
+	<script type="module" src="./src/utils/categories.js"></script>
+	<script src="./src/Pages/modeAdmin.js"></script>
+
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-// recuperation du token
+// recuperation du token d'authentification
 const token = window.sessionStorage.getItem("token");
 
 // creation du mode Edition en cas d'authentification réussi 

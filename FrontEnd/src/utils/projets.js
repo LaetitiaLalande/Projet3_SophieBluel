@@ -1,6 +1,4 @@
-const urlApi = "http://localhost:5678/api/";
-
-// creation de la fonction generer les projets
+// creation de la fonction "generer les projets" et exportation de la fonction vers fichier API/projetsAPI.js
 export function genererProjects(listProjects) {
 
     for (let i = 0; i < listProjects.length; i++) {
@@ -20,14 +18,9 @@ export function genererProjects(listProjects) {
         const titreElement = document.createElement("figcaption");
         titreElement.innerText = project.title;
 
-        // rattachement des balises a la class .gallery
+        // rattachement des balises a la class .gallery et au projet
         gallery.appendChild(projectElement);
         projectElement.appendChild(imageElement);
         projectElement.appendChild(titreElement);
     }
 }
-
-// appel à l'api avec la methode fetch qui genère les projets grace à la fonction genererProjects
-fetch(`${urlApi}works`)
-    .then((response) => response.json())
-    .then((data) => genererProjects(data))

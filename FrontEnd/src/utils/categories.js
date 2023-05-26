@@ -1,7 +1,7 @@
 // Importation de la fonction genererProjects
 import { genererProjects } from "./projets.js";
-const urlApi = "http://localhost:5678/api/";
 
+const urlApi = "http://localhost:5678/api/";
 // recupère la reponse depuis l'api
 const response = await fetch(`${urlApi}works`);
 // reponse affectée à listCategorys et transformée en format json
