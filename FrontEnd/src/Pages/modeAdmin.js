@@ -1,14 +1,14 @@
 // recuperation du token d'authentification
 const token = window.sessionStorage.getItem("token");
 
-// creation du mode Edition en cas d'authentification réussi 
+// selection du dom des class "modeEdit"
 const modeEdit = document.querySelectorAll('.modeEdit');
 
-function modeEdition() {
+function modeEdition() { // fonction si token est true alors affichage du mode admin
     if (token) {
-        document.getElementById("loginBtn").innerText = "logout";
-        document.querySelector(".filters").style.display = "none";
-        // parcourt tous les éléments modeEdit et effectue le toggle
+        document.getElementById("loginBtn").innerText = "logout"; // changement du texte pour le bouton login
+        document.querySelector(".filters").style.display = "none"; // disparition de la barre de filtre
+        // boucle qui parcourt tous les éléments dont la class est "modeEdit" et effectue la bascule de style class "active"
         for (let i = 0; i < modeEdit.length; i++) {
             modeEdit[i].classList.toggle('active');
         }

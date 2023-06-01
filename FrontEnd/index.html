@@ -77,9 +77,12 @@
 
 						<!-- modale Galerie -->
 						<div class="modalGalleryContent">
+
 							<button class="closeModal modalTrigger"><i class="fa-solid fa-xmark"></i></button>
 							<h2>Galerie photo</h2>
+
 							<div class="galleryModal"></div>
+
 							<button class="btnPhotoAdd btnModal">Ajouter une photo</button>
 							<a href="#" class="btnDelete">Supprimer la galerie</a>
 						</div>
@@ -94,39 +97,35 @@
 
 							<!-- Bloc qui permet d'ajouter et prévisualiser la photo  -->
 							<div class="addPhotoContainer">
-								<img class="showImage" alt="previsualisation de l'image">
-
+								<img class="imageUpload" alt="previsualisation de l'image">
 								<div class="preview">
 									<i class="fa-sharp fa-regular fa-image"></i>
-
-									<!-- formulaire d'envoi de nouveaux projets -->
-									<form action="" method="post" class="formAdd">
-										<div>
-											<label for="uploadPhoto" class="uploadPhoto">+ Ajouter une photo</label>
-											<input type="file" name="uploadPhoto" id="uploadPhoto" accept="image/*">
-											<p id="textFile">jpg, png : 4mo max</p>
-										</div>
+									<div>
+										<label for="btnUploadPhoto" class="btnUploadPhoto">+ Ajouter une
+											photo</label>
+										<input type="file" name="btnUploadPhoto" id="btnUploadPhoto"
+											accept="image/jpeg, image/png">
+										<p id="textFile">jpg, png : 4mo max</p>
+									</div>
 								</div>
-
 							</div>
 
-							<label for="title">Titre</label>
-							<input type="text" name="title" id="title">
-							<label for="category">Categories</label>
-							<select name="category" id="category">
-								<option value="option" selected></option>
-								<option value="1">Objets</option>
-								<option value="2">Appartements</option>
-								<option value="3">Hôtels et restaurants</option>
-							</select>
-							<div id="btnSubmitAddPhoto">
-								<input type="submit" value="Valider" class="btnSubmitAddPhoto">
-							</div>
+							<form action="" method="post" class="formAdd">
+								<label for="title">Titre</label>
+								<input type="text" name="title" id="title" required>
+								<label for="category">Categories</label>
+								<select name="category" id="category">
+									<option value="option" selected></option>
+									<option value="1">Objets</option>
+									<option value="2">Appartements</option>
+									<option value="3">Hôtels et restaurants</option>
+								</select>
+								<div id="btnSubmitAddPhoto">
+									<input type="submit" value="Valider" class="btnSubmitAddPhoto">
+								</div>
 							</form>
 						</div>
-
 					</div>
-
 				</div>
 
 				<!-- bouton "Modifier" qui apparait lors de l'authentification -->
@@ -176,7 +175,6 @@
 
 	<script type="module" src="./src/API/projetsAPI.js"></script>
 	<script type="module" src="./src/API/modalAPI.js"></script>
-	<script src="./src/Pages/Ajout_Travaux.js"></script>
 	<script type="module" src="./src/utils/categories.js"></script>
 	<script src="./src/Pages/modeAdmin.js"></script>
 

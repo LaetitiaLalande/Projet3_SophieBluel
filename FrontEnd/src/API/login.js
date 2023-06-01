@@ -4,7 +4,7 @@ const loginPassword = document.getElementById("password");
 const form = document.getElementById("form");
 const passwordForgot = document.getElementById('passwordForgot');
 
-// evenement au click du bouton se connecter
+// evenement au clic du bouton se connecter
 form.addEventListener("submit", (e) => {
     e.preventDefault(); //empeche le comportement par défaut du navigateur de se déclencher au clic
 
@@ -32,6 +32,8 @@ form.addEventListener("submit", (e) => {
                 const alertError = document.createElement('div');
                 alertError.textContent = "Erreur dans l’identifiant et/ou le mot de passe";
                 alertError.style.color = 'red';
+                alertError.style.borderRadius = '5px';
+                alertError.style.backgroundColor = 'pink';
                 alertError.style.textAlign = "center";
                 alertError.style.marginBottom = "10px";
                 passwordForgot.parentElement.insertBefore(alertError, passwordForgot);// message d'erreur inséré avant passwordForgot
