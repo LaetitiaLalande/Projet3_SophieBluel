@@ -5,11 +5,15 @@ const token = window.sessionStorage.getItem("token");
 
 // importation de la fonction qui génère la galerie principale
 import { genererProjects } from "../utils/projets.js";
+import { toggleModalContainer } from "../utils/modal.js";
+import { genererGalleryModale } from "./modalAPI.js";
 
-// appel à l'api avec la methode fetch qui genère les projets grace à la fonction genererProjects
-fetch(`${urlApi}works`)
-    .then((response) => response.json())
-    .then((data) => genererProjects(data))
+function genererGalleryPrincipale() { // fonction qui fait appel à l'API et genère les projets
+    fetch(`${urlApi}works`)
+        .then((response) => response.json())
+        .then((data) => genererProjects(data)) //fonction qui genère les projets
+}
+genererGalleryPrincipale();
 
 
 // fonction de suppression des travaux
@@ -28,7 +32,13 @@ export async function deleteProject(e) { // exportation de la fonction asynchron
         });
         if (response.ok) {
             console.log(`Ressource ${projectId} supprimée avec succès `);
-            document.getElementById(projectId).remove(); // suppression du (l'id cliqué) projet de la modale
+            document.querySelector(".galleryModal").innerHTML = "";
+            genererGalleryModale();
+            document.querySelector(".gallery").innerHTML = "";
+            genererGalleryPrincipale();
+            // } else if (response.status === 401) { // si l'utilisateur est non autorisé alors il est renvoyé vers la page de login
+            //     window.sessionStorage.removeItem("token"); // efface le token 
+            //     window.location.href = 'login.html';
         } else {
             console.log('Erreur lors de la suppression de la ressource');
         }
@@ -40,7 +50,7 @@ export async function deleteProject(e) { // exportation de la fonction asynchron
 
 
 // fonction qui permet d'ajouter des projets
-export async function addProject(e) {
+export async function addProject(e) { //exportation de la fonction vers fichier UTILS modal.js
     e.preventDefault();
 
     // recuperation de l'image , catégorie et titre
@@ -65,7 +75,16 @@ export async function addProject(e) {
         });
         if (response.ok) {
             console.log("Projet ajouté avec succès");
-        } else {
+            toggleModalContainer(); // fonction fait disparaitre la modale à la validation du formulaire et reset le formulaire
+            document.querySelector(".galleryModal").innerHTML = "";
+            genererGalleryModale();
+            document.querySelector(".gallery").innerHTML = "";
+            genererGalleryPrincipale();
+            // } else if (response.status === 401) { // si l'utilisateur est non autorisé alors il est renvoyé vers la page de login
+            //     window.sessionStorage.removeItem("token"); // efface le token 
+            //     window.location.href = 'login.html';
+        }
+        else {
             alert("Échec de l'envoi");
         }
     }
@@ -73,3 +92,10 @@ export async function addProject(e) {
         console.error(`Une erreur s'est produite lors de la requête : ${error}`)
     }
 }
+
+window.addEventListener('storage', (e) => { //se declenche lorsque la zone de stockage du token a été modifiée
+    location.reload(); // recharge la page pour prendre en compte le nouveau token
+    window.sessionStorage.removeItem("token"); // efface le token 
+    window.location.href = 'login.html';
+});
+

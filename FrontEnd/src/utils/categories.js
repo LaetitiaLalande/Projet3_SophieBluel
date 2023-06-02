@@ -7,7 +7,6 @@ const response = await fetch(`${urlApi}works`);
 // reponse affectée à listCategorys et transformée en format json
 const listCategorys = await response.json();
 
-
 // creation du bouton tous
 const btnAll = document.getElementById("btn-all");
 btnAll.addEventListener("click", () => {

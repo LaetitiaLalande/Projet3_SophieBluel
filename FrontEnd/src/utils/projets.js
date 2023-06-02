@@ -1,8 +1,5 @@
-import { addProject } from "../API/projetsAPI.js";
-
 // creation de la fonction "generer les projets" et exportation de la fonction vers fichier API/projetsAPI.js
 export function genererProjects(listProjects) {
-
     for (let i = 0; i < listProjects.length; i++) {
 
         // creation de la const pour 1 projet
@@ -27,8 +24,3 @@ export function genererProjects(listProjects) {
         projectElement.appendChild(titreElement);
     }
 }
-
-// Ajout de projets depuis la modale
-const formAdd = document.querySelector('.formAdd');
-// evenement au clic avec fonction d'ajout de projet 
-formAdd.addEventListener("submit", addProject)

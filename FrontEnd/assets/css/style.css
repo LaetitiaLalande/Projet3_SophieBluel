@@ -532,3 +532,8 @@ footer nav ul {
 	display: none;
 	margin: auto;
 }
+
+.champVide {
+	border: 1px solid red;
+	background-color: #ffdddd;
+}
