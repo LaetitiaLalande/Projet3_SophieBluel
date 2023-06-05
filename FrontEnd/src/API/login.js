@@ -6,7 +6,7 @@ const passwordForgot = document.getElementById('passwordForgot');
 
 // evenement au clic du bouton se connecter
 form.addEventListener("submit", (e) => {
-    e.preventDefault(); //empeche le comportement par défaut du navigateur de se déclencher au clic
+    e.preventDefault(); //empeche le rechargement par défaut du navigateur de se déclencher au clic
 
     // requete POST qui permet d'envoyer les données du formulaire
     fetch(`${urlApi}users/login`, {
@@ -22,8 +22,8 @@ form.addEventListener("submit", (e) => {
             password: loginPassword.value,
         }),
     })
-        .then(response => response.json())
-        .then((data) => {
+        .then(response => response.json()) //transforme nos données au format json 
+        .then((data) => { // permet de traiter les données
             if (data.userId && data.token) { // conditon si email et mdp sont ok
                 window.location.href = 'index.html'; // retour vers la page d'accueil si authentification reussie
                 window.sessionStorage.setItem("token", data.token);// stockage dans la sessionStorage du token d'authentification

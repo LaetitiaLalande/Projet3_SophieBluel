@@ -4,7 +4,8 @@ import { addProject } from "../API/projetsAPI.js"; // fonction intégrée à la 
 // fonction qui génère la galerie modale
 export function generateModalProjects(modalProjects) {
 
-    for (let i = 0; i < modalProjects.length; i++) {
+    for (let i = 0; i < modalProjects.length; i++) { //boucle qui est effectuée pour chaque projet
+
         // creation de la const pour 1 projet
         const project = modalProjects[i];
 
@@ -13,9 +14,9 @@ export function generateModalProjects(modalProjects) {
 
         // creation de la fiche dédiée à un projet
         const projectElement = document.createElement("figure");
-        projectElement.setAttribute('id', project.id); // affectation de l'id à chaque projet 
+        projectElement.setAttribute('data-id', project.id); // affectation d'un attribut data-id pour chaque projet qui contient l'identifiant de chaque élément
 
-        // creation l'image qui integrera la fiche
+        // creation de l'image qui integrera la fiche
         const imageElement = document.createElement("img");
         imageElement.src = project.imageUrl; //recupération de l'url de l'image
 
@@ -43,11 +44,11 @@ export function generateModalProjects(modalProjects) {
         titreElement.innerText = "éditer";
 
         // rattachement des balises à la class .galleryModal et à l'element projet
-        galleryModal.appendChild(projectElement);
-        projectElement.appendChild(imageElement);
-        projectElement.appendChild(iconTrash);
-        galleryModal.appendChild(iconArrows);
-        projectElement.appendChild(titreElement);
+        galleryModal.appendChild(projectElement); // rattache le projet à la galerie
+        projectElement.appendChild(imageElement); // rattache l'image au projet
+        projectElement.appendChild(iconTrash); // ajoute l'icone au projet
+        galleryModal.appendChild(iconArrows); // rattache l'icone fleche de retour à la galerie
+        projectElement.appendChild(titreElement); // rattache le titre au projet
     }
 }
 
@@ -93,7 +94,7 @@ function formReset() {
 
 
 // fonction de Prévisualisation de l'image avant l'upload
-const preview = document.querySelector(".preview"); //bloc contenant l'icone, limage et le bouton d'ajout
+const preview = document.querySelector(".preview"); // Element contenant l'icone, l'image et le bouton d'ajout
 const imageUpload = document.querySelector(".imageUpload"); // image uploadé
 const btnUploadPhoto = document.getElementById("btnUploadPhoto");  // selection du bouton "+ ajouter ajouter photo"
 
@@ -106,7 +107,7 @@ function previewImage() {
     // i à la fin signifie que la correspondance est insensible à la casse, le format peut etre en majuscule ou minuscule
 
     const file = this.files[0]; // récupère le premier fichier sélectionné a partir du "btnUploadPhoto" 
-    // this fait référence à l'élément DOM qui a déclenché l'événement
+    // this fait référence à l'élément du DOM qui a déclenché l'événement
     if (!extensionFile.test(file.name)) { // condition si l'extension n'est pas bonne
         messageError("format non autorisé");
     }
@@ -120,12 +121,12 @@ function previewImage() {
         preview.style.display = "none";// disparition du bloc icone + bouton + texte
     }
 }
-btnUploadPhoto.addEventListener("change", previewImage) // evenement au clic du bouton ajouter photo lorsque l'événement de changement se produit
+btnUploadPhoto.addEventListener("change", previewImage) // evenement change au clic du bouton ajouter photo 
 
 // fonction qui génère un message d'erreur dans le bloc "+ ajouter photo"
 export function messageError(message) {
     const alertError = document.createElement('div'); //création d'un div pour le message d'erreur
-    alertError.textContent = message;
+    alertError.innerText = message;
     alertError.style.color = 'red';
     alertError.style.fontSize = "12px";
     preview.appendChild(alertError);
@@ -134,12 +135,12 @@ export function messageError(message) {
     }, 3000);
 }
 
+
 //selection du formulaire pour l'ajout des photos
 const formAdd = document.querySelector(".formAdd");
-
 // verifie que tous les champs et soumet le formulaire ajout de projet si tout est rempli
 formAdd.addEventListener("submit", function (e) {
-    e.preventDefault()
+    e.preventDefault();
 
     let allChampsCompleted = true; //variable pour l'ensemble des champs
 

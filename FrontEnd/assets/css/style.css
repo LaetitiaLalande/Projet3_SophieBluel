@@ -186,7 +186,7 @@ li:hover {
 	margin-bottom: 50px;
 }
 
-.btn-filter:hover {
+.btn-filter.active {
 	background-color: #1D6154;
 	color: white;
 }
@@ -399,6 +399,7 @@ footer nav ul {
 	padding-bottom: 47px;
 	border-bottom: 1px solid #B3B3B3;
 	position: relative;
+	max-width: 420px;
 }
 
 

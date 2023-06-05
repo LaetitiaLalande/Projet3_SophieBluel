@@ -2,6 +2,7 @@
 import { genererProjects } from "./projets.js";
 
 const urlApi = "http://localhost:5678/api/";
+
 // recupère la reponse depuis l'api
 const response = await fetch(`${urlApi}works`);
 // reponse affectée à listCategorys et transformée en format json
@@ -40,3 +41,14 @@ btnHotel.addEventListener("click", () => {
     genererProjects(categoryHotel);
 });
 
+
+// boucle boutons filtre qui deviennent vert au clic de la catégorie
+const btnFilter = document.querySelectorAll('.btn-filter')
+for (let categorys of btnFilter) {
+    categorys.addEventListener("click", function () {
+        for (let categorysRemove of btnFilter) {
+            categorysRemove.classList.remove('active')// supprime la class au clic d'un autre btn
+        }
+        categorys.classList.add('active') //ajoute la class à l'element cliqué
+    })
+}

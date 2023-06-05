@@ -10,7 +10,7 @@ export function genererProjects(listProjects) {
 
         // creation de la fiche dédiée à un projet
         const projectElement = document.createElement("figure");
-        projectElement.setAttribute('data-id', project.id);
+        projectElement.setAttribute('data-id', project.id); //affectation d'un attribut data-id pour chaque projet qui contient l'identifiant de chaque élément
 
         // creation des éléments qui integrera la fiche
         const imageElement = document.createElement("img");
