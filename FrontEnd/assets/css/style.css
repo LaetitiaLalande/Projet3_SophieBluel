@@ -538,3 +538,9 @@ footer nav ul {
 	border: 1px solid red;
 	background-color: #ffdddd;
 }
+
+.textMessageError {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+}

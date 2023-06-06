@@ -53,6 +53,7 @@ export function generateModalProjects(modalProjects) {
 }
 
 
+
 // selection des elements pour Déclenchement de la modale 1
 const modalContainer = document.querySelector(".modalContainer");
 const btnModalTrigger = document.querySelectorAll(".modalTrigger");
@@ -63,16 +64,22 @@ const modalAddPhoto = document.querySelector(".modalAddPhoto");
 const btnPhotoAdd = document.querySelector(".btnPhotoAdd");
 const btnBackGallery = document.querySelector(".btnBackGallery");
 
-btnPhotoAdd.addEventListener("click", () => { //bascule vers la modale 2 lorsqu'on clique sur le bouton "ajouter photo"
+
+//bascule vers la modale 2 lorsqu'on clique sur le bouton "ajouter photo"
+btnPhotoAdd.addEventListener("click", () => {
     modalAddPhoto.style.display = "flex"; // apparition de la modale 2
     modalGalleryContent.style.display = "none"; // disparition de la modale galerie
+    formReset();
 })
+
 
 // bouton retour de la modale 2 à la modale 1
 btnBackGallery.addEventListener("click", () => { // retour vers la modale galerie lorsqu'on clique sur la flèche de retour depuis la modale 2
     modalAddPhoto.style.display = "none";
     modalGalleryContent.style.display = "flex";
+    formReset();
 })
+
 
 // fonction qui fait apparaitre/disparaitre la modale 
 export function toggleModalContainer() { //exportation de la fonction vers le fichier API projetsApi 
@@ -84,13 +91,29 @@ export function toggleModalContainer() { //exportation de la fonction vers le fi
 // evenement fait apparaitre/disparaitre la modale galerie à chaque clique des elements portant la class ".btnModalTrigger"
 btnModalTrigger.forEach(trigger => trigger.addEventListener("click", toggleModalContainer))
 
-//fonction qui reset le formulaire
-function formReset() {
+
+//fonction qui reset le formulaire lorsqu'on quitte la modale
+export function formReset() {
     const formAdd = document.querySelector('.formAdd');
     formAdd.reset(); // efface le formulaire
+
+    imageUpload.src = " "; // Réinitialisation de la source de l'image
+    btnUploadPhoto.value = ""; //Réinitialise la valeur de l'input file après chaque sélection de fichier. pemet de selectionner 2fois de suite la même image
+
+    const textMessageError = document.querySelectorAll('.textMessageError');
+    for (let textError of textMessageError) { // efface le message d'erreur
+        textError.textContent = " ";
+    }
+
+    const styleChampVide = document.querySelectorAll('.champVide'); //selection de tous les elements dont la class est 'champVide'
+    for (let i = 0; i < styleChampVide.length; i++) { // boucle qui efface le style css de la class '.champVide'
+        styleChampVide[i].classList.remove('champVide');
+    }
+
     imageUpload.style.display = "none";// disparition du bloc image 
     preview.style.display = "flex";// affichage du bloc icone + bouton + texte
 }
+
 
 
 // fonction de Prévisualisation de l'image avant l'upload
@@ -108,29 +131,34 @@ function previewImage() {
 
     const file = this.files[0]; // récupère le premier fichier sélectionné a partir du "btnUploadPhoto" 
     // this fait référence à l'élément du DOM qui a déclenché l'événement
-    if (!extensionFile.test(file.name)) { // condition si l'extension n'est pas bonne
-        messageError("format non autorisé");
+
+    if (file && !extensionFile.test(file.name)) { // condition si un fichier est selectionné et que l'extension n'est pas bonne
+        messageError("format non autorisé", "previewError");
     }
     else if (file.size > 4 * 1024 * 1024) { // condition qui vérifie si la taille dépasse 4mo
-        messageError("la taille dépasse 4mo");
+        messageError("la taille dépasse 4mo", "previewError");
     }
-    else { // permet le prévisualisation de l'image avant l'envoi
-        const fileUrl = URL.createObjectURL(file); //création d'une URL à partir du fichier selectionné et l'affecte à la constante fileUrl
+    else if (file) { // si un fichier est selectionnée - permet le prévisualisation de l'image avant l'envoi
+        const fileUrl = URL.createObjectURL(file); //création d'une URL temporaire à partir du fichier selectionné et l'affecte à la constante fileUrl
         imageUpload.src = fileUrl; //affectation de l'url au bloc "imageUpload", pour afficher l'image sélectionnée
-        imageUpload.style.display = "block";// affichage du bloc image 
+        imageUpload.style.display = "flex";// affichage du bloc image 
         preview.style.display = "none";// disparition du bloc icone + bouton + texte
     }
 }
 btnUploadPhoto.addEventListener("change", previewImage) // evenement change au clic du bouton ajouter photo 
 
-// fonction qui génère un message d'erreur dans le bloc "+ ajouter photo"
-export function messageError(message) {
+
+
+export function messageError(message, contenaireMessageId) { // 2 paramètres : message=>d'erreur à afficher - contenaireMessageId : L'ID de l'élément du DOM où le message d'erreur sera inséré.
+    const contenaireMessage = document.getElementById(contenaireMessageId);
+
     const alertError = document.createElement('div'); //création d'un div pour le message d'erreur
-    alertError.innerText = message;
-    alertError.style.color = 'red';
-    alertError.style.fontSize = "12px";
-    preview.appendChild(alertError);
-    setTimeout(() => {
+    alertError.classList.add('textMessageError'); // ajout de la class css '.messageError'
+    alertError.innerText = message; // texte du message d'erreur à définir
+
+    contenaireMessage.appendChild(alertError); //Le message d'erreur est ensuite ajouté en tant qu'enfant du conteneur spécifié en paramètre lors de l'appel de la ftcion
+
+    setTimeout(() => { // supprime le message après 3 secondes
         alertError.remove();
     }, 3000);
 }
@@ -140,7 +168,7 @@ export function messageError(message) {
 const formAdd = document.querySelector(".formAdd");
 // verifie que tous les champs et soumet le formulaire ajout de projet si tout est rempli
 formAdd.addEventListener("submit", function (e) {
-    e.preventDefault();
+    e.preventDefault(); //empêche la soumission par défaut du formulaire
 
     let allChampsCompleted = true; //variable pour l'ensemble des champs
 
@@ -148,16 +176,24 @@ formAdd.addEventListener("submit", function (e) {
 
     //boucle qui verifie que tous les champs du formulaire sont remplis 
     for (let i = 0; i < champs.length; i++) { // Parcours de tous les champs du formulaire formAdd
+
         if (champs[i].value.trim() === "") { // verifie la valeur des champs
+
             champs[i].classList.add("champVide"); // Ajouter la classe CSS pour le style de champ vide
             allChampsCompleted = false; //si un des champs n'est pas rempli renvoi false
+
+            const divError = document.createElement('div'); //creation d'un message pour champ non rempli
+            divError.classList.add('textMessageError'); // ajout de la class css
+            divError.textContent = 'Veuillez compléter ce champ.';
+            champs[i].insertAdjacentElement('afterend', divError); // // Insérer l'élément divError après le champ non rempli
+            setTimeout(() => {
+                divError.remove();
+            }, 3000);
+
         } else {
-            champs[i].classList.remove("champVide"); // Supprimer la classe CSS si le champ est rempli        
+            champs[i].classList.remove("champVide"); // Supprimer la classe CSS si le champ est rempli 
         }
     } if (allChampsCompleted) { // si tous les champs sont remplis , génère la fonction d'ajout de projet
         addProject(e); // fonction qui envoi les projets 
-    } else {
-        // Affichez un message d'erreur ou effectuez d'autres actions pour indiquer que tous les champs doivent être remplis
-        alert("Veuillez remplir tous les champs du formulaire.");
     }
 });   

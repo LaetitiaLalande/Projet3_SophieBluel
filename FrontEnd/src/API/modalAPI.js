@@ -7,7 +7,7 @@ const urlApi = "http://localhost:5678/api/";
 export function genererGalleryModale() {
     fetch(`${urlApi}works`)
         .then(response => response.json()) // 1ere promesse qui retourne une réponse qu'on transforme au format json
-        .then(data => generateModalProjects(data)) // fonction qui genere les projets de la galerie Modale
+        .then(data => generateModalProjects(data)) // on traite les données avec la fonction qui genere les projets de la galerie Modale
         .catch((error) => console.error(`Une erreur s'est produite : ${error}`)) // capturer l’erreur potentielle dans le bloc et indique comment la gérer
 }
 genererGalleryModale();

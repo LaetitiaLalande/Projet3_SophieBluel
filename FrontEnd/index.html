@@ -98,7 +98,7 @@
 							<!-- Bloc qui permet d'ajouter et prévisualiser la photo  -->
 							<div class="addPhotoContainer">
 								<img src="#" class="imageUpload" alt="previsualisation de l'image">
-								<div class="preview">
+								<div class="preview" id="previewError">
 									<i class="fa-sharp fa-regular fa-image"></i>
 									<div>
 										<label for="btnUploadPhoto" class="btnUploadPhoto">+ Ajouter une
@@ -159,7 +159,7 @@
 				<input type="email" name="email" id="email">
 				<label for="message">Message</label>
 				<textarea name="message" id="message" cols="30" rows="10"></textarea>
-				<input type="submit" value="Envoyer">
+				<input type="submit" value="Envoyer" disabled>
 			</form>
 		</section>
 	</main>

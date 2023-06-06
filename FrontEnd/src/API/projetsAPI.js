@@ -73,7 +73,8 @@ export async function addProject(e) { //exportation de la fonction vers fichier 
         });
         if (response.ok) {
             console.log("Projet ajouté avec succès");
-            toggleModalContainer(); // fonction fait disparaitre la modale à la validation du formulaire et reset le formulaire
+            document.querySelector(".modalGalleryContent").style.display = "flex";
+            document.querySelector(".modalAddPhoto").style.display = "none";
             document.querySelector(".galleryModal").innerHTML = "";
             genererGalleryModale();
             document.querySelector(".gallery").innerHTML = "";
